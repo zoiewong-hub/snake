@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WorkWeave｜零号工位调查终端</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="dot"></div>
+          <div>
+            <h1>WorkWeave</h1>
+            <p>Orbital Robotics 内网终端</p>
+          </div>
+        </div>
+
+        <div class="pilot-card">
+          <img
+            alt="机器人头像"
+            src="data:image/svg+xml;utf8,
+            <svg xmlns='http://www.w3.org/2000/svg' width='260' height='140' viewBox='0 0 260 140'>
+              <rect width='260' height='140' rx='14' fill='%230f172a'/>
+              <rect x='60' y='30' width='140' height='80' rx='12' fill='%231e293b' stroke='%2358a6ff'/>
+              <circle cx='105' cy='70' r='10' fill='%2367e8f9'/>
+              <circle cx='155' cy='70' r='10' fill='%2367e8f9'/>
+              <rect x='112' y='92' width='36' height='7' rx='4' fill='%23818cf8'/>
+              <rect x='127' y='12' width='6' height='20' fill='%23a5b4fc'/>
+              <circle cx='130' cy='10' r='7' fill='%23f59e0b'/>
+            </svg>"
+          />
+          <p><strong>值班单元：</strong>R-17 / 夜班维护</p>
+          <p><strong>任务状态：</strong>异常调查进行中</p>
+        </div>
+
+        <nav>
+          <h2>工作区</h2>
+          <ul>
+            <li># ops-notice</li>
+            <li># maintenance</li>
+            <li># archive <span>🔒</span></li>
+            <li># ai-ethics <span>⚠️</span></li>
+          </ul>
+        </nav>
+      </aside>
+
+      <main class="main-panel">
+        <header class="topbar">
+          <div>
+            <h2>《零号工位》文本解谜</h2>
+            <p>你将通过登录、检索、破译、排序，复原凌晨事故真相（约 30 分钟）。</p>
+          </div>
+          <div class="status">系统时间：03:06 · 线路延迟 42ms</div>
+        </header>
+
+        <section id="login-panel" class="panel active">
+          <h3>Step 1｜登录镜像办公系统</h3>
+          <p class="story-block">
+            冷启动后，你看见公告闪过：<em>Night shift</em>、<em>Operation reset</em>、<em>Vault migration</em>、<em>Archive lockdown</em>。<br />
+            白板提示：<strong>“账号=公告四词首字母 + 你的编号”</strong>；<strong>“密码=重启时间(24h) + 门牌后三位”</strong>。<br />
+            你路过档案室，门牌写着：<strong>A-742</strong>。
+          </p>
+
+          <div class="fake-options">
+            <span>快速登录建议（含迷惑项）：</span>
+            <button class="ghost-suggest" data-fill="NOVA7|0310742">NOVA7 / 0310742</button>
+            <button class="ghost-suggest" data-fill="NOVA17|0310742">NOVA17 / 0310742</button>
+            <button class="ghost-suggest" data-fill="NOVA17|0310427">NOVA17 / 0310427</button>
+          </div>
+
+          <div class="form-row">
+            <label>账号<input id="account" autocomplete="off" placeholder="例如 NOVA17" /></label>
+            <label>密码<input id="password" type="password" autocomplete="off" placeholder="7位数字" /></label>
+            <button id="login-btn">登录 WorkWeave</button>
+          </div>
+          <p id="login-msg" class="hint"></p>
+        </section>
+
+        <section id="chat-panel" class="panel">
+          <h3>Step 2｜聊天记录与素材检索</h3>
+          <div class="workspace">
+            <article>
+              <p class="story-block">系统仅开放只读聊天。你必须找到 <strong>3 枚真实证据关键词</strong>，同时警惕误导词。</p>
+              <div class="chat-box" id="chat-log"></div>
+            </article>
+
+            <aside class="evidence-box">
+              <img
+                alt="监控截图"
+                src="data:image/svg+xml;utf8,
+                <svg xmlns='http://www.w3.org/2000/svg' width='360' height='170' viewBox='0 0 360 170'>
+                  <rect width='360' height='170' rx='12' fill='%23020617'/>
+                  <rect x='15' y='15' width='330' height='140' rx='8' fill='%230b1220' stroke='%232563eb'/>
+                  <path d='M30 120 L90 86 L130 100 L210 52 L320 78' stroke='%2367e8f9' fill='none' stroke-width='3'/>
+                  <text x='24' y='38' fill='%2394a3b8' font-size='14'>CAM-3A · Lift Hall</text>
+                  <text x='24' y='145' fill='%23f59e0b' font-size='12'>03:02 movement detected</text>
+                </svg>"
+              />
+              <p>素材库提示：聊天里出现的“净化脚本”“周年庆彩蛋”可能是障眼法。</p>
+              <p class="hint">已找到：<span id="found-keys">无</span></p>
+            </aside>
+          </div>
+
+          <div class="form-row">
+            <label>检索关键词<input id="keyword-input" placeholder="从聊天原文中提取，如：电梯" /></label>
+            <button id="search-btn">检索证据</button>
+          </div>
+          <p id="chat-msg" class="hint"></p>
+        </section>
+
+        <section id="decode-panel" class="panel">
+          <h3>Step 3｜解码事故报告（含干扰项）</h3>
+          <div class="cards">
+            <div class="card">
+              <h4>线索 A</h4>
+              <p>二进制：<code>01000110 01000001 01001100 01001100</code></p>
+            </div>
+            <div class="card">
+              <h4>线索 B</h4>
+              <p>“把 <code>WLEHSA</code> 向后位移 4 格。”</p>
+            </div>
+            <div class="card fake">
+              <h4>线索 C（迷惑）</h4>
+              <p>自动摘要称“事故发生在 7 号停机区”（AI 自动摘要可信度仅 21%）</p>
+            </div>
+            <div class="card">
+              <h4>线索 D</h4>
+              <p>手写维保单：<strong>“第一停机区 = 3”</strong></p>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <label>A<input id="ans-a" placeholder="英文大写" /></label>
+            <label>B<input id="ans-b" placeholder="英文小写" /></label>
+            <label>停机区编号<input id="ans-c" placeholder="数字" /></label>
+          </div>
+          <button id="decode-btn">提交解码</button>
+          <p id="decode-msg" class="hint"></p>
+        </section>
+
+        <section id="timeline-panel" class="panel">
+          <h3>Step 4｜重建时间线</h3>
+          <p class="story-block">请输入正确顺序（例如：2-1-3-4-5）。</p>
+          <ol class="timeline-list">
+            <li>[1] 03:10 广播“计划重启”，并宣布将覆盖异常缓存。</li>
+            <li>[2] Lin 在 #archive 丢下“FALL / shadow”，随后账号被停用。</li>
+            <li>[3] 你从聊天提取“电梯、停机区、伦理模块”三条证据。</li>
+            <li>[4] 巡检记录显示 3 号停机区伦理模块被拆离，且电梯有转运轨迹。</li>
+            <li>[5] 第一份官方事故报告将关键位置写成“7 号停机区”。</li>
+          </ol>
+          <div class="form-row">
+            <label>排序结果<input id="timeline-input" placeholder="例如：2-5-4-1-3" /></label>
+            <button id="timeline-btn">确认时间线</button>
+          </div>
+          <p id="timeline-msg" class="hint"></p>
+        </section>
+
+        <section id="ending-panel" class="panel">
+          <h3>结局｜零号工位不在地图里</h3>
+          <p class="story-block" id="ending-text"></p>
+          <div class="ending-actions">
+            <button id="restart-btn">重新游玩</button>
+            <button id="truth-btn" class="secondary">广播真相（彩蛋文本）</button>
+          </div>
+          <p id="truth-msg" class="hint"></p>
+        </section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
