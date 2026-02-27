@@ -19,3 +19,16 @@ python -m http.server 8000
 ```
 
 访问 <http://localhost:8000>。
+
+
+## PR 冲突快速处理（命令行）
+
+如果 GitHub 页面提示本分支在以下文件有冲突：`README.md`、`index.html`、`script.js`、`styles.css`，可在本地执行：
+
+```bash
+git merge <目标分支>
+bash scripts/resolve_pr_conflicts.sh
+git commit -m "chore: resolve PR conflicts for puzzle game files"
+```
+
+说明：该脚本会在冲突状态下保留当前功能分支中的游戏实现版本（`--ours`），并自动 `git add` 四个冲突文件。
