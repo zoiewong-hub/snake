@@ -32,20 +32,3 @@ git commit -m "chore: resolve PR conflicts with ours strategy"
 ```
 
 说明：该脚本固定采用 **保留 ours** 策略（`git checkout --ours`），并自动 `git add` 四个冲突文件。
-
-
-## GitHub Pages 显示旧页面时的排查
-
-如果线上打开后仍是旧版 UI（例如只看到简单登录页），通常是 Pages 源分支/目录与当前代码不一致，或浏览器缓存未刷新。
-
-1. 强制刷新页面（`Ctrl/Cmd + Shift + R`）。
-2. 检查仓库 Pages 配置：
-   - Source 分支是否为你实际合并的分支（如 `main`）。
-   - Folder 是否为 `/ (root)` 或 `/docs`。
-3. 如果 Pages 使用 `/docs`，执行：
-
-```bash
-bash scripts/build_pages_bundle.sh
-```
-
-会把 `index.html`、`styles.css`、`script.js`、`README.md` 同步到 `docs/`，并生成 `.nojekyll`，确保 Pages 使用同一套前端文件。
