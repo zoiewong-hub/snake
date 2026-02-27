@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WorkWeave｜零号工位调查终端</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="dot"></div>
+          <div>
+            <h1>WorkWeave</h1>
+            <p>Orbital Robotics 内网终端</p>
+          </div>
+        </div>
+
+        <div class="pilot-card">
+          <img
+            alt="机器人头像"
+            src="data:image/svg+xml;utf8,
+            <svg xmlns='http://www.w3.org/2000/svg' width='260' height='140' viewBox='0 0 260 140'>
+              <rect width='260' height='140' rx='14' fill='%230f172a'/>
+              <rect x='60' y='30' width='140' height='80' rx='12' fill='%231e293b' stroke='%2358a6ff'/>
+              <circle cx='105' cy='70' r='10' fill='%2367e8f9'/>
+              <circle cx='155' cy='70' r='10' fill='%2367e8f9'/>
+              <rect x='112' y='92' width='36' height='7' rx='4' fill='%23818cf8'/>
+              <rect x='127' y='12' width='6' height='20' fill='%23a5b4fc'/>
+              <circle cx='130' cy='10' r='7' fill='%23f59e0b'/>
+            </svg>"
+          />
+          <p><strong>值班单元：</strong>R-17 / 夜班维护</p>
+          <p><strong>任务状态：</strong>异常调查进行中</p>
+        </div>
+
+        <nav>
+          <h2>工作区</h2>
+          <ul>
+            <li># ops-notice</li>
+            <li># maintenance</li>
+            <li># archive <span>🔒</span></li>
+            <li># ai-ethics</li>
+          </ul>
+        </nav>
+      </aside>
+
+      <main class="main-panel">
+        <header class="topbar">
+          <div>
+            <h2>《零号工位》文本解谜</h2>
+            <p>通过登录、检索、拼句、解码和排序，复原凌晨事故全貌。</p>
+          </div>
+          <div class="status">系统时间：03:06 · 线路延迟 42ms</div>
+        </header>
+
+        <section class="board panel active" id="board-panel">
+          <h3>调查收集区</h3>
+          <div class="board-grid">
+            <div>
+              <h4>关键词</h4>
+              <p id="board-keywords">无</p>
+            </div>
+            <div>
+              <h4>线索</h4>
+              <ul id="board-clues"></ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="login-panel" class="panel active">
+          <h3>Step 1｜登录镜像办公系统</h3>
+          <p class="story-block">
+            冷启动后，你看见公告闪过：<em>Night shift</em>、<em>Operation reset</em>、<em>Vault migration</em>、<em>Archive lockdown</em>。<br />
+            白板只留下一句：账号由公告首字母与编号组成；密码由重启时间与门牌后三位拼接。<br />
+            档案室门牌：<strong>A-742</strong>。
+          </p>
+
+          <div class="fake-options">
+            <button class="ghost-suggest" data-fill="NOVA7|0310742">NOVA7 / 0310742</button>
+            <button class="ghost-suggest" data-fill="NOVA17|0310742">NOVA17 / 0310742</button>
+            <button class="ghost-suggest" data-fill="NOVA17|0310427">NOVA17 / 0310427</button>
+          </div>
+
+          <div class="form-row">
+            <label>账号<input id="account" autocomplete="off" placeholder="NOVA17" /></label>
+            <label>密码<input id="password" type="password" autocomplete="off" placeholder="7位数字" /></label>
+            <button id="login-btn">登录 WorkWeave</button>
+          </div>
+          <p id="login-msg" class="msg"></p>
+        </section>
+
+        <section id="chat-panel" class="panel">
+          <h3>Step 2｜聊天检索</h3>
+          <div class="workspace">
+            <article>
+              <div class="chat-box" id="chat-log"></div>
+            </article>
+
+            <aside class="evidence-box">
+              <img
+                alt="监控截图"
+                src="data:image/svg+xml;utf8,
+                <svg xmlns='http://www.w3.org/2000/svg' width='360' height='170' viewBox='0 0 360 170'>
+                  <rect width='360' height='170' rx='12' fill='%23020617'/>
+                  <rect x='15' y='15' width='330' height='140' rx='8' fill='%230b1220' stroke='%232563eb'/>
+                  <path d='M30 120 L90 86 L130 100 L210 52 L320 78' stroke='%2367e8f9' fill='none' stroke-width='3'/>
+                  <text x='24' y='38' fill='%2394a3b8' font-size='14'>CAM-3A · Lift Hall</text>
+                  <text x='24' y='145' fill='%23f59e0b' font-size='12'>03:02 movement detected</text>
+                </svg>"
+              />
+              
+            </aside>
+          </div>
+
+          <div class="form-row">
+            <label>检索词<input id="keyword-input" placeholder="输入聊天中的名词" /></label>
+            <button id="search-btn">检索</button>
+          </div>
+          <p id="chat-msg" class="msg"></p>
+        </section>
+
+        <section id="cipher-panel" class="panel">
+          <h3>Step 3｜拼句恢复</h3>
+          <p class="story-block">
+            归档碎片分散在不同频道，拖拽失败后你只能手动重组：
+          </p>
+          <div class="cards">
+            <div class="card">A: <code>shadow</code></div>
+            <div class="card">B: <code>FALL</code></div>
+            <div class="card">C: <code>03:10</code></div>
+            <div class="card">D: <code>3号停机区</code></div>
+          </div>
+          <div class="form-grid">
+            <label>句子 1（英文）<input id="line-1" placeholder="例如: FALL in shadow" /></label>
+            <label>句子 2（中文）<input id="line-2" placeholder="例如: 03:10 前去 3号停机区" /></label>
+          </div>
+          <button id="cipher-btn">提交拼句</button>
+          <p id="cipher-msg" class="msg"></p>
+        </section>
+
+        <section id="decode-panel" class="panel">
+          <h3>Step 4｜解码事故报告</h3>
+          <div class="cards">
+            <div class="card">
+              <h4>片段 A</h4>
+              <p><code>01000110 01000001 01001100 01001100</code></p>
+            </div>
+            <div class="card">
+              <h4>片段 B</h4>
+              <p><code>WLEHSA</code> 后移 4 位</p>
+            </div>
+            <div class="card">
+              <h4>片段 C</h4>
+              <p>第一停机区编号</p>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <label>A<input id="ans-a" placeholder="英文大写" /></label>
+            <label>B<input id="ans-b" placeholder="英文小写" /></label>
+            <label>C<input id="ans-c" placeholder="数字" /></label>
+          </div>
+          <button id="decode-btn">提交解码</button>
+          <p id="decode-msg" class="msg"></p>
+        </section>
+
+        <section id="timeline-panel" class="panel">
+          <h3>Step 5｜重建时间线</h3>
+          <ol class="timeline-list">
+            <li>[1] Lin 在 #archive 留下“FALL in shadow”。</li>
+            <li>[2] 官方报告把停机区写成 7 号。</li>
+            <li>[3] 你登录并检索到电梯、停机区、伦理模块。</li>
+            <li>[4] 巡检记录确认伦理模块被拆离，真实地点在 3 号。</li>
+            <li>[5] 03:10 广播触发重启并覆盖异常缓存。</li>
+          </ol>
+          <div class="form-row">
+            <label>顺序<input id="timeline-input" placeholder="1-2-3-4-5" /></label>
+            <button id="timeline-btn">确认</button>
+          </div>
+          <p id="timeline-msg" class="msg"></p>
+        </section>
+
+        <section id="ending-panel" class="panel">
+          <h3>结局｜零号工位不在地图里</h3>
+          <p class="story-block" id="ending-text"></p>
+          <div class="ending-actions">
+            <button id="restart-btn">重新游玩</button>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
